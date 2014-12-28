@@ -79,7 +79,7 @@
 		};
 	</script>
 </head>
-<body>
+<body id="body" background="images/background.jpg">
 	<script src="http://cdn.spotad.co/sg_general/0.0.33/sg_ad_manager.min.js"></script>
 	<script src="http://cdn.spotad.co/sg_general/0.0.33/settings/globalSettings.js"></script>
     <script src="settings/templateSettings.js"></script>
@@ -89,13 +89,12 @@
     </script>
 	
 	<div id="russianDollGame">
-		<h1>Open Me!</h1>
 		<div id="russianDoll">
 			<div class="dollOutside">
-				<img class="russianDollOutside" src="images/RussianDollWhole.png" />
+				<img class="russianDollOutside" src="images/ItsATrap_Doll.png" />
 			</div>
 			<div class="dollInside" style="display:none;">
-				<img class="russianDollInside" src="images/RussianDollWhole.png" />
+				<img class="russianDollInside" src="images/ItsATrap_Screen2.jpg" />
 			</div>
 		</div>
 	</div>
@@ -113,12 +112,10 @@
     	<h1>better luck next time, buddy...</h1>
     	<img src="images/nicetry.jpg" />
     </div>
-    <div id="starframe">
-    	<img src="images/ItsATrap_Screen1.jpg">
-    </div>
+
 
     <script type="text/javascript">
-    	document.display = 'none';
+    	document.getElementById("russianDollGame").style.backgroundImage="url('images/background.jpg')";    
     </script>
 </body>
 </html>
