@@ -25,19 +25,26 @@
     	}
     	
     	#russianDoll {
+    		
     		cursor: pointer;
     		display: block;
     		margin: 0 auto;
     		padding: 0;
     	}
     	
-    	.dollHalves {
-    		z-index: 1;
-    		width: 200px;
+    	.dollHalf {
+    		position: relative;
     	}
     	
-    	.dollInside {
-    		z-index: .5;
+    	.dollHalves img {
+    		z-index: 1;
+    		width: 200px;
+    		
+    		
+    	}
+    	
+    	.dollInside img {
+    		z-index: -1;
     		width: 200px;
     	}
     </style>
@@ -56,8 +63,8 @@
 		<h1>Open Me!</h1>
 		<div id="russianDoll">
 			<div class="dollHalves">
-				<img class="russianDollTop" src="images/RussianDollTop.png" />
-				<img class="russianDollBottom" src="images/RussianDollBottom.png" />
+				<img class="dollHalf russianDollTop" src="images/RussianDollTop.png" />
+				<img class="dollHalf russianDollBottom" src="images/RussianDollBottom.png" />
 			</div>
 			<div class="dollInside">
 				<img class="russianDollInside" src="images/RussianDollWhole.png" />
