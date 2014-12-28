@@ -66,7 +66,8 @@
     thisgame.changeFrame = function (frame) {
         switch (frame) {
             case spotgames.frame_state.START_FRAME:
-                return false;
+            	introFrame();
+                break;
             case spotgames.frame_state.PLAY_FRAME:
                 setFooterFontSize();
                 break;
@@ -83,6 +84,10 @@
         gameContainer.addEventListener(touchStartEvent, sendEngage, false);
         btn = gameContainer.querySelector('#btn');
         btn.addEventListener(touchEndEvent, requestRedirect, false);
+    }
+    
+    function introFrame() {
+    	alert("hi");
     }
 
     function preloadBigImages() {

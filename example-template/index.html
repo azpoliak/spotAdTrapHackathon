@@ -2,16 +2,50 @@
 <html>
 <head>
     <title></title>
+    
+    <style>
+    	body {
+    		background-color: #FFF;
+    		font-family: sans-serif;
+    	}
+    	
+    	#russianDollGame {
+    		width: 600px;
+    	}
+    	
+    	h1 {
+    		text-align: center;
+    		font-weight: bold;
+    		color: #F00;
+    	}
+    	
+    	.russianDoll {
+    		cursor: pointer;
+    		display: block;
+    		margin: 0 auto;
+    		width: 300px;
+    	}
+    </style>
+    
 </head>
 <body>
-
+	
+	
+	
 	<script src="http://cdn.spotad.co/sg_general/0.0.33/sg_ad_manager.min.js"></script>
 	<script src="http://cdn.spotad.co/sg_general/0.0.33/settings/globalSettings.js"></script>
     <script src="settings/templateSettings.js"></script>
     <script>
-        var manager = new FlowManager(globalSettings, templateSettings);
-        manager.start();
+        // var manager = new FlowManager(globalSettings, templateSettings);
+        // manager.start();
     </script>
+	
+	<div id="russianDollGame">
+		<h1>Open Me!</h1>
+		<img class="russianDoll" src="images/russian-doll.jpg" />
+		
+	</div>
+	
 </body>
 </html>
 
