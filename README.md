@@ -1,5 +1,5 @@
 spotAdTrapHackathon
 ===================
-Created by Daniel Raskin, Tony Robinson, Samantha Gruskin, Adam Poliak
+Created by Daniel Raskin, Tonny Rosenfeld, Samantha Gruskin, Adam Poliak
 
 Testing push-ability :-)
