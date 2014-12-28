@@ -26,7 +26,7 @@ templateSettings =
      },
     "content": {
         "show": "true",
-        "image":"cat.png"
+        "image":"russian-doll.jpg"
     }
 
 

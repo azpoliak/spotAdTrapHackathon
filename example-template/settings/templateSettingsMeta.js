@@ -200,7 +200,7 @@
            "required" : "false",
            "advanced" : "false",
            "unit" : "",
-           "defaultValue" : "cat.png",
+           "defaultValue" : "russian-doll.jpg",
            "grouping" : "Content",
            "order" : "2",
            "dependency":"@content.show == 'true'"
