@@ -9,8 +9,13 @@
     		font-family: sans-serif;
     	}
     	
+    	#startTrap {
+    		display: none;
+    	}
+    	
     	#russianDollGame {
     		width: 600px;
+    		height: 800px;
     	}
     	
     	h1 {
@@ -19,11 +24,21 @@
     		color: #F00;
     	}
     	
-    	.russianDoll {
+    	#russianDoll {
     		cursor: pointer;
     		display: block;
     		margin: 0 auto;
-    		width: 300px;
+    		padding: 0;
+    	}
+    	
+    	.dollHalves {
+    		z-index: 1;
+    		width: 200px;
+    	}
+    	
+    	.dollInside {
+    		z-index: .5;
+    		width: 200px;
     	}
     </style>
     
@@ -39,10 +54,18 @@
 	
 	<div id="russianDollGame">
 		<h1>Open Me!</h1>
-		<img class="russianDoll" src="images/russian-doll.jpg" />
+		<div id="russianDoll">
+			<div class="dollHalves">
+				<img class="russianDollTop" src="images/RussianDollTop.png" />
+				<img class="russianDollBottom" src="images/RussianDollBottom.png" />
+			</div>
+			<div class="dollInside">
+				<img class="russianDollInside" src="images/RussianDollWhole.png" />
+			</div>
+		</div>
 	</div>
 	
-	<div id="start_frame" style="margin: 0; position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%);"> 
+	<div id="startTrap"> 
     	<img src="images/trap.png"/>
     </div>
 
