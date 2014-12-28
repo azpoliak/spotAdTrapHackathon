@@ -71,8 +71,13 @@ thisgame.changeFrame = function (frame) {
     /*this function changes frames regarding what frame was requested*/
     switch (frame) {
         case spotgames.frame_state.START_FRAME:
-            return false;/*if you don't need  a frame place this line*/
+            var elem = document.getElementById('starframe');
+            elem.show();
+            break;
         case spotgames.frame_state.PLAY_FRAME:
+            var elem = document.getElementById('starframe');
+            elem.style.display = 'none'; //or
+            elem.style.visibility = 'hidden';
             someFunction();
             break;
         case spotgames.frame_state.WIN_FRAME:
