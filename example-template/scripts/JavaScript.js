@@ -30,7 +30,7 @@ var isAndroid = spotgamesUtils.isMobile.Android();
 var isWindows = spotgamesUtils.isMobile.Windows();
 var isOpera = spotgamesUtils.isMobile.Opera();
 var isBlackbery = spotgamesUtils.isMobile.BlackBerry();
-var shrinkCount = 0;
+
 
 //Your Template should start from declaring necessary variables
 var thisGame = this,
@@ -81,7 +81,8 @@ thisgame.changeFrame = function (frame) {
             someFunction();
             break;
         case spotgames.frame_state.WIN_FRAME:
-            someFunction();
+            alert("hi");
+            alert(shrinkCount);
             break;
         case spotgames.frame_state.LOSE_FRAME:
             return false;
@@ -89,6 +90,8 @@ thisgame.changeFrame = function (frame) {
     /*this line of code makes framework notice that frame has been changed*/
     spotgamesEventManager.dispatchEvent(spotgames.event_type.FRAME_CHANGED, thisgame.constructor.name);
 };
+
+thisgame.requestWinFrame();
 
 
 // START_FRAME is the first frame to show after dispatching AD_INIT, so you don't need to call it manualy. But that is the only exception. For the current frame to change you need to request framework to do so. Frames are changed with the help of the code below . We also highly recommend to place these calls in functions, as shown in example, for easier use.

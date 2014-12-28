@@ -15,8 +15,7 @@
         stylesAmount, imagesForPreload = [],
         meta = '<meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width" />',
         style = ' #main-container{width: 100%; height: 100%; position: absolute; text-align: center;}#main-container.hide{visibility: hidden;}#cont-box{display: table; height: 80%; width: 100%;}#cont-box > div{height: 100%; width: 100%; display: table-cell; vertical-align: middle;}#logo{height: 15%;}#logo img, #footer img{max-height: 70%; max-width: 100%; margin: 5% 0;}#footer{height: 5%;}.font-setter{width: 100%; height: 100%;}#image img{width: 50%; max-width: 300px; max-height: 300px;}#btn{max-height: 100px; max-width: 300px; width: 40%; margin-top: 70px;}body {background-color: #FFF;font-family: sans-serif;}#startTrap {display: none;}#russianDollGame {display: block;width: 600px;height: 800px;}h1 {text-align: center;font-weight: bold;color: #F00;}#russianDoll {cursor: pointer;display: block;margin: 0 auto;padding: 0;}.dollHalves {width: 200px;}.dollHalves img {z-index: 1;width: 200px;}.dollInside img {z-index: -1;width: 200px;}#fullOfWin, #lose {width: 400px;display: none;}#fullOfWin img, #lose img {width: 400px;display: block;}',
-        html = '<div id="russianDollGame"><div id="russianDoll"><div class="dollOutside"><img class="russianDollOutside" src="images/ItsATrap_Doll.png" /></div><div class="dollInside" style="display:none;"><img class="russianDollInside" src="images/ItsATrap_Screen2.jpg" /></div></div></div><div id="startTrap"> <img src="images/trap.png"/></div><div id="fullOfWin"><img src="images/win.jpg" /><img src="images/grandprize.jpg" /></div><div id="lose"><h1>better luck next time, buddy...</h1><img src="images/nicetry.jpg" /></div><script type="text/javascript">document.getElementById("russianDollGame").style.backgroundImage="url(\'images/background.jpg\')";</script>';
-        
+        html = '<div id="russianDollGame"><div id="russianDoll"><div class="dollOutside"><img class="russianDollOutside" src="images/ItsATrap_Doll.png" /></div><div class="dollInside" style="display:none;"><img class="russianDollInside" src="images/ItsATrap_Screen2.jpg" /></div></div></div><div id="startTrap"> <img src="images/trap.png"/></div><div id="fullOfWin"><img src="images/win.jpg" /><img src="images/grandprize.jpg" /></div><div id="lose"><h1>better luck next time, buddy...</h1><img src="images/nicetry.jpg" /></div>';
         
        
        
@@ -30,7 +29,7 @@
 
     /*first function that is called to template*/
     thisgame.init = function (preload) {
-        if (html) {
+        if (html) {   
             stylesAmount = document.styleSheets.length;
             document.head.innerHTML += meta;
             mainWrapper = document.createElement('div');
@@ -66,13 +65,13 @@
     thisgame.changeFrame = function (frame) {
         switch (frame) {
             case spotgames.frame_state.START_FRAME:
-                return false;
+				break;
             case spotgames.frame_state.PLAY_FRAME:
                 break;
             case spotgames.frame_state.WIN_FRAME:
-                return false;
+                break;
             case spotgames.frame_state.LOSE_FRAME:
-                return false;
+                break;
         }
         spotgamesEventManager.dispatchEvent(spotgames.event_type.FRAME_CHANGED, thisgame.constructor.name);
     };
