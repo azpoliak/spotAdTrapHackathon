@@ -14,7 +14,7 @@
     	}
     	
     	#russianDollGame {
-    		display: none;
+    		display: block;
     		width: 600px;
     		height: 800px;
     	}
@@ -59,7 +59,23 @@
     		display: block;
     	}
     </style>
-    
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
+    <script>
+		var shrinkPercentage = 0.9;
+		$().ready(function(e) {
+			$('.dollOutside').on("swipe", SwipeDoll);
+        });
+		
+		var SwipeDoll = function(event) {
+			var newHeight = $('.russianDollOutside').height() * shrinkPercentage;
+			var newWidth = $('.russianDollOutside').width() * shrinkPercentage;
+			$('.russianDollOutside').fadeOut().height(newHeight).width(newWidth).fadeIn();
+		};
+	</script>
 </head>
 <body>
 	<script src="http://cdn.spotad.co/sg_general/0.0.33/sg_ad_manager.min.js"></script>
@@ -73,11 +89,10 @@
 	<div id="russianDollGame">
 		<h1>Open Me!</h1>
 		<div id="russianDoll">
-			<div class="dollHalves">
-				<img class="russianDollTop" src="images/RussianDollTop.png" />
-				<img class="russianDollBottom" src="images/RussianDollBottom.png" />
+			<div class="dollOutside">
+				<img class="russianDollOutside" src="images/RussianDollWhole.png" />
 			</div>
-			<div class="dollInside">
+			<div class="dollInside" style="display:none;">
 				<img class="russianDollInside" src="images/RussianDollWhole.png" />
 			</div>
 		</div>
