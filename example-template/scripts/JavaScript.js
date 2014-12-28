@@ -30,7 +30,7 @@ var isAndroid = spotgamesUtils.isMobile.Android();
 var isWindows = spotgamesUtils.isMobile.Windows();
 var isOpera = spotgamesUtils.isMobile.Opera();
 var isBlackbery = spotgamesUtils.isMobile.BlackBerry();
-var shrinkCount = 0;
+
 
 //Your Template should start from declaring necessary variables
 var thisGame = this,

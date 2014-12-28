@@ -8,14 +8,12 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
     <script>
-    	shrinkCount = 0;
 		var shrinkPercentage = 0.9;
 		$().ready(function(e) {
 			$('.dollOutside').on("swipe", SwipeDoll);
         });
 		
 		var SwipeDoll = function(event) {
-			shrinkCount += 1;
 			var newHeight = $('.russianDollOutside').height() * shrinkPercentage;
 			var newWidth = $('.russianDollOutside').width() * shrinkPercentage;
 			$('.russianDollOutside').fadeOut().height(newHeight).width(newWidth).fadeIn();
@@ -27,8 +25,47 @@
 	<script src="http://cdn.spotad.co/sg_general/0.0.33/settings/globalSettings.js"></script>
     <script src="settings/templateSettings.js"></script>
     <script>
+<<<<<<< HEAD
         var manager = new FlowManager(globalSettings, templateSettings);
         manager.start();
+=======
+        // var manager = new FlowManager(globalSettings, templateSettings);
+        // manager.start();
+    </script>
+	
+	<div id="russianDollGame">
+		<h1>Open Me!</h1>
+		<div id="russianDoll">
+			<div class="dollOutside">
+				<img class="russianDollOutside" src="images/RussianDollWhole.png" />
+			</div>
+			<div class="dollInside" style="display:none;">
+				<img class="russianDollInside" src="images/RussianDollWhole.png" />
+			</div>
+		</div>
+	</div>
+	
+	<div id="startTrap"> 
+    	<img src="images/trap.png"/>
+    </div>
+    
+    <div id="fullOfWin">
+    	<img src="images/win.jpg" />
+    	<img src="images/grandprize.jpg" />
+    </div>
+    
+    <div id="lose">
+    	<h1>better luck next time, buddy...</h1>
+    	<img src="images/nicetry.jpg" />
+    </div>
+    <div id="starframe">
+    	<img src="images/ItsATrap_Screen1.jpg">
+    </div>
+
+    <script type="text/javascript">
+    	document.display = 'none';
+
+>>>>>>> parent of 41d3d2f... succeeding
     </script>
 </body>
 </html>
