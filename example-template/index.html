@@ -65,12 +65,14 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
     <script>
+    	shrinkCount = 0;
 		var shrinkPercentage = 0.9;
 		$().ready(function(e) {
 			$('.dollOutside').on("swipe", SwipeDoll);
         });
 		
 		var SwipeDoll = function(event) {
+			shrinkCount += 1;
 			var newHeight = $('.russianDollOutside').height() * shrinkPercentage;
 			var newWidth = $('.russianDollOutside').width() * shrinkPercentage;
 			$('.russianDollOutside').fadeOut().height(newHeight).width(newWidth).fadeIn();
@@ -117,7 +119,6 @@
 
     <script type="text/javascript">
     	document.display = 'none';
-
     </script>
 </body>
 </html>
