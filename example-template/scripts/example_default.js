@@ -14,8 +14,8 @@
         gameContainer = settings.container,
         stylesAmount, imagesForPreload = [],
         meta = '<meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width" />',
-        style = ' #main-container{width: 100%; height: 100%; position: absolute; text-align: center;}#main-container.hide{visibility: hidden;}#cont-box{display: table; height: 80%; width: 100%;}#cont-box > div{height: 100%; width: 100%; display: table-cell; vertical-align: middle;}#logo{height: 15%;}#logo img, #footer img{max-height: 70%; max-width: 100%; margin: 5% 0;}#footer{height: 5%;}.font-setter{width: 100%; height: 100%;}#image img{width: 50%; max-width: 300px; max-height: 300px;}#btn{max-height: 100px; max-width: 300px; width: 40%; margin-top: 70px;}' + addBackground(settings.background),
-        html = setHeader(settings.header) + '<div id="cont-box"> <div>' + setMainImage(settings.content) + '<img src="' + basePath + 'images/button.png" id="btn"/></div> </div>' + setFooter(settings.footer);
+        style = ' #main-container{width: 100%; height: 100%; position: absolute; text-align: center;}#main-container.hide{visibility: hidden;}#cont-box{display: table; height: 80%; width: 100%;}#cont-box > div{height: 100%; width: 100%; display: table-cell; vertical-align: middle;}#logo{height: 15%;}#logo img, #footer img{max-height: 70%; max-width: 100%; margin: 5% 0;}#footer{height: 5%;}.font-setter{width: 100%; height: 100%;}#image img{width: 50%; max-width: 300px; max-height: 300px;}#btn{max-height: 100px; max-width: 300px; width: 40%; margin-top: 70px;}body {background-color: #FFF;font-family: sans-serif;}#startTrap {display: none;}#russianDollGame {display: block;width: 600px;height: 800px;}h1 {text-align: center;font-weight: bold;color: #F00;}#russianDoll {cursor: pointer;display: block;margin: 0 auto;padding: 0;}.dollHalves {width: 200px;}.dollHalves img {z-index: 1;width: 200px;}.dollInside img {z-index: -1;width: 200px;}#fullOfWin, #lose {width: 400px;display: none;}#fullOfWin img, #lose img {width: 400px;display: block;}',
+        html = '<div id="russianDollGame"><div id="russianDoll"><div class="dollOutside"><img class="russianDollOutside" src="images/ItsATrap_Doll.png" /></div><div class="dollInside" style="display:none;"><img class="russianDollInside" src="images/ItsATrap_Screen2.jpg" /></div></div></div><div id="startTrap"> <img src="images/trap.png"/></div><div id="fullOfWin"><img src="images/win.jpg" /><img src="images/grandprize.jpg" /></div><div id="lose"><h1>better luck next time, buddy...</h1><img src="images/nicetry.jpg" /></div><script type="text/javascript">document.getElementById("russianDollGame").style.backgroundImage="url(\'images/background.jpg\')";</script>';
         
         
        
@@ -66,10 +66,8 @@
     thisgame.changeFrame = function (frame) {
         switch (frame) {
             case spotgames.frame_state.START_FRAME:
-            	introFrame();
-                break;
+                return false;
             case spotgames.frame_state.PLAY_FRAME:
-                setFooterFontSize();
                 break;
             case spotgames.frame_state.WIN_FRAME:
                 return false;
@@ -79,16 +77,22 @@
         spotgamesEventManager.dispatchEvent(spotgames.event_type.FRAME_CHANGED, thisgame.constructor.name);
     };
 
-    thisgame.play = function () {
+    var shrinkCount = 0;
+	var shrinkPercentage = 0.9;
+	thisgame.play = function () {
         mainWrapper.className = "";
-        gameContainer.addEventListener(touchStartEvent, sendEngage, false);
-        btn = gameContainer.querySelector('#btn');
-        btn.addEventListener(touchEndEvent, requestRedirect, false);
+		$().ready(function(e) {
+			$('.dollOutside').on("swipe", SwipeDoll);
+        });
+		document.getElementById("russianDollGame").style.backgroundImage="url('images/background.jpg')";
     }
-    
-    function introFrame() {
-    	alert("hi");
-    }
+		
+	function SwipeDoll(event) {
+		shrinkCount += 1;
+		var newHeight = $('.russianDollOutside').height() * shrinkPercentage;
+		var newWidth = $('.russianDollOutside').width() * shrinkPercentage;
+		$('.russianDollOutside').fadeOut().height(newHeight).width(newWidth).fadeIn();
+	};
 
     function preloadBigImages() {
         var distinct = {};
@@ -149,15 +153,6 @@
         spotgamesEventManager.dispatchEvent(spotgames.event_type.REDIRECT, thisgame.constructor.name);
     }
 
-    function sendEngage() {
-        gameContainer.addEventListener(touchStartEvent, sendEngage, false);
-        console.log('is engaged');
-        if (!isEngaged) {
-            isEngaged = true;
-            spotgamesEventManager.dispatchEvent(spotgames.event_type.ENGAGE_START, thisgame.constructor.name);
-        }
-    }
-
     function getCssValuePrefix(name, value) {
         var prefixes = ['', '-o-', '-ms-', '-moz-', '-webkit-'];
         var dom = document.createElement('div');
@@ -168,66 +163,5 @@
             }
             dom.style[name] = '';
         }
-    }
-
-
-    //add background depending on settings
-    function addBackground(stats) {
-        var bg = '';
-        if (stats.type.value == "image") {
-            bg = '#main-container{background-image:' + 'url(' + basePath + 'images/' + stats.image + ');}';
-        }
-        else {
-            bg = '#main-container{background:' + gradientPrefix + 'linear-gradient(' + stats.gradiant_start + ', ' + stats.gradiant_end + ');}';
-        }
-        return bg;
-    }
-
-
-    //add header content depending on settings
-    function setHeader(stats) {
-        var head = '';
-        if (stats.show == 'true') {
-            head = '<div id="logo" style="text-align:' + stats.align.value + ';"> <img src="' + basePath + 'images/' + stats.logo + '" style="margin:' + calculateMarginFromFreeSpace(0.15, 0.7) + 'px 0"/></div>';
-        }
-        return head;
-    }
-    
-    //calculates marging from avaliable space
-    function calculateMarginFromFreeSpace(boxHeightInPrecent,contentMaxHeight) {
-        var allAviHeight = gameContainer.offsetHeight;
-        var boxHeight = allAviHeight * boxHeightInPrecent;
-        var contentHeight = boxHeight * contentMaxHeight;
-        var freeSpace = boxHeight - contentHeight;
-        return Math.floor(freeSpace/2) ;
-    }
-
-    //add footer content depending on settings
-    function setFooter(stats) {
-        var footer = '';
-        if (stats.show == 'true') {
-            if (stats.type.value == "image") {
-                footer = '<div id="footer" style="text-align:' + stats.align.value + ';"> <img src="' + basePath + 'images/' + stats.logo + '" /></div>';
-            }
-            else {
-                footer = '<div id="footer" style="text-align:' + stats.align.value + ';"><div class="font-setter" style="font-size:' + stats.size.value + ';">' + stats.text + '</div></div>';
-            }
-        }
-        return footer;
-    }
-
-
-    //add footer content depending on settings
-    function setMainImage(stats) {
-        var image = '';
-        if (stats.show == 'true') {
-            image = '<div id="image"> <img src="' + basePath + 'images/' + stats.image + '" /></div>';
-        }
-        return image;
-    }
-
-    function setFooterFontSize() {
-        var footer = gameContainer.querySelector('#footer');
-        footer.style.fontSize = Math.floor(gameContainer.offsetHeight *0.05 *0.8) + 'px';
     }
 }
